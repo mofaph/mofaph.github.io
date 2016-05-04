@@ -3,6 +3,18 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：在 CentOS-7 系统中，安装后时间不一致
+
+解决方法：
+
+{% highlight bash %}
+$ sudo yum install -y ntpdate
+$ sudo ntpdate pool.ntp.org
+$ sudo crobtab -e
+30 * * * * ntpdate pool.ntp.org
+$ sudo hwclock -w
+{% endhighlight %}
+
 # 问题：docker pull centos:7 无法完成
 
 详细描述：
