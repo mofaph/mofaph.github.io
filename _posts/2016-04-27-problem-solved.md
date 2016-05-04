@@ -3,6 +3,51 @@ layout: post
 title: 常见问题解决
 ---
 
+# 问题：编译 zeromq-4.1. 时，不能找到 libsodium，但它已安装
+
+问题详细描述：
+
+在编译 zeromq-4.1.4 之前，已经手动编译安装了 libsodium-1.0.10
+
+{% highlight bash %}
+libsodium-1.0.10$ ./configure && make
+libsodium-1.0.10$ sudo make install
+libsodium-1.0.10$ ls /usr/local/lib
+libsodium.a  libsodium.la*  libsodium.so@  libsodium.so.18@
+libsodium.so.18.1.0*  pkgconfig/
+libsodium-1.0.10$ ls /usr/local/lib/pkgconfig
+libsodium.pc
+{% endhighlight %}
+
+解决方法：
+
+{% highlight bash %}
+zeromq-4.1.4$ PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure
+{% endhighlight %}
+
+原因分析：
+
+在编译 zeromq 时，编译系统使用 pkg-config 来查找需要的库。但是 pkg-config 默认的
+搜索路径不包括 /usr/local/lib/pkgconfig。
+
+# 问题：CentOS-7 安装完了之后，不能进行开发工作
+
+解决方法：安装开发包
+
+使用 yum 安装的软件包：
+
+{% highlight bash %}
+$ sudo yum groupinstall "Development Tools"
+$ sudo yum install tmux
+{% endhighlight %}
+
+手动编译的软件包：
+
+emacs
+global
+nginx
+zeromq
+
 # VMWare Workstation 8 安装 CentOS-7 没找到网卡
 
 问题：在 VMWare Workstation 8 中，使用 minimal 镜像安装完 CentOS-7 之后，系统启
