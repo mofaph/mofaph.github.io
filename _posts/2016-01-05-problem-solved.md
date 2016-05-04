@@ -3,6 +3,17 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：在 CentOS-7 系统中，官方源没法安装 nodejs
+
+解决方法：
+
+{% highlight bash %}
+$ sudo yum install epel-release
+$ sudo yum install nodejs
+$ node --version
+$ sudo yum install npm
+{% endhighlight %}
+
 # 问题：在 CentOS-7 系统中，安装后时间不一致
 
 解决方法：
