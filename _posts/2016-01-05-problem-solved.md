@@ -3,6 +3,24 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：docker pull centos:7 无法完成
+
+详细描述：
+
+在 CentOS-7 中，安装官网的教程安装完了 docker 之后，使用 docker pull centos-7 不
+能完成。安装和运行的命令如下：
+
+{% highlight bash %}
+$ curl -fsSL https://get.docker.com/ | sh
+$ docker pull centos:7
+{% endhighlight %}
+
+解决方法：
+
+{% highlight bash %}
+$ sudo service docker start #1
+{% endhighlight %}
+
 # 问题：编译 zeromq-4.1. 时，不能找到 libsodium，但它已安装
 
 问题详细描述：
