@@ -38,7 +38,10 @@ zeromq-4.1.4$ PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure
 
 {% highlight bash %}
 $ sudo yum groupinstall "Development Tools"
-$ sudo yum install tmux
+$ sudo yum install zlib-devel bzip2-devel openssl-devel ncurses-devel \
+    readline-devel tk-devel libpcap-devel xz-devel libxslt-devel libxml2-devel \
+    libjpeg-devel libcurl-devel
+$ sudo yum install tmux cmake cmake-doc
 {% endhighlight %}
 
 手动编译的软件包：
