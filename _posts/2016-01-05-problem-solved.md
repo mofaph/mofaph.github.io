@@ -3,7 +3,55 @@ title: 已解决问题集
 layout: post
 ---
 
-# 问题：如何部署 Jekyll 到 Nginx？
+# 问题：如何自动部署静态博客文章到 Nginx？
+
+解决方法：
+
+{% highlight bash %}
+\# adduser git
+\# su - git
+git$ git init --bare blog.git
+git$ cat > blog.git/hooks/post-receive << EOF
+#!/bin/sh
+
+PATH=$HOME/bin:$PATH
+
+BLOG_BARE_REPO=$HOME/blog.git
+BLOG_BUILD_REPO=$HOME/buildblog
+PUBLIC_WWW=/var/www
+
+git clone $BLOG_BARE_REPO $BLOG_BUILD_REPO
+jekyll build -s $BLOG_BUILD_REPO -d $PUBLIC_WWW
+
+exit
+EOF
+git$ exit
+\# mkdir /var/www
+\# chown git:nginx /var/www
+\# chmod 0755 /var/www
+{% endhighlight %}
+
+设置完了 Git 之后，开始设置 Nginx：
+
+{% highlight Lua %}
+server {
+    listen 16328;
+    index index.html index.htm;
+    location / {
+        root /var/www;
+    }
+}
+{% endhighlight %}
+
+{% highlight bash %}
+user$ git remote add deploy git@localhost:~/blog.git
+user$ git push deploy master
+{% endhighlight %}
+
+问题分析：
+
+由于使用 Git 管理博客文章，那么需要在推送到服务端后，执行生成静态页面，然后将生
+成的静态页面放到 Nginx 能够访问的目录中。
 
 # 问题：如何在 CentOS-7 系统中，搭建一个本地的 Github 博客？
 
