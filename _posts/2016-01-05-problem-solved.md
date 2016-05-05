@@ -183,7 +183,7 @@ global
 nginx
 zeromq
 
-# VMWare Workstation 8 安装 CentOS-7 没找到网卡
+# 问题：VMWare Workstation 8 安装 CentOS-7 没找到网卡
 
 问题：在 VMWare Workstation 8 中，使用 minimal 镜像安装完 CentOS-7 之后，系统启
 动后没有找到网卡。
@@ -207,7 +207,7 @@ ethernet0.virtualDev = "e1000"
 
 Vmware虚拟网卡和linux兼容问题导致驱动无法正常安装，默认的网卡类型不兼容
 
-# Python InsecurePlatformWarning
+# 问题：Python InsecurePlatformWarning
 
 问题：在 CentOS-6.5 中，运行 pip install 时，出现如下的警告：
 
