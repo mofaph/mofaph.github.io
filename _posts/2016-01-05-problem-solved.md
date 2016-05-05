@@ -3,6 +3,49 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：如何部署 Jekyll 到 Nginx？
+
+# 问题：如何在 CentOS-7 系统中，搭建一个本地的 Github 博客？
+
+解决方法：
+
+{% highlight bash %}
+$ gem install bundler
+$ mkdir newsite && cd newsite && git init
+$ cat > Gemfile << EOF
+source 'https://ruby.taobao.org/'
+gem 'github-pages', group: :jekyll_plugins
+EOF
+$ bundle install
+$ bundle exec jekyll serve
+{% endhighlight %}
+
+问题分析：
+
+由于 Github Page 使用 Jekyll 搭建静态博客，而 Jekyll 依赖 Ruby 的开发包。由于需
+要在本地搭建一个博客，那么也需要将 Github 的主题下来回来。
+
+# 问题：在 CentOS-7 系统中，运行 gem install jekyll 失败
+
+详细描述：
+
+ERROR: Could not find a valid gem 'jekyll' (>= 0), here is why:
+
+Unable to download data from https://rubygems.org/ - Errno::ECONNRESET:
+Connection reset by peer - SSL_connect
+(https://rubygems.org/latest_specs.4.8.gz)
+
+解决方法：
+
+{% highlight bash %}
+$ gem sources -r https://rubygems.org/
+$ gem sources -a https://ruby.taobao.org/
+{% endhighlight %}
+
+问题分析：
+
+由于防火墙屏蔽了 rubygems.org。
+
 # 问题：在 CentOS-7 系统中，官方源没法安装 nodejs
 
 解决方法：
