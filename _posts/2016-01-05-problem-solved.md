@@ -3,6 +3,13 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：在 Emacs 中打开 Windows 下的文件，出现乱码
+
+解决方法：
+
+安装对应的字体：`sudo yum groupinstall "Fonts"`，然后在打开的文件中输入`M-x
+revert-buffer-with-coding-system gbk-dos`。
+
 # 问题：emacs-24.5.1 使用 magit-status，查看变更时，背景高亮非常影响阅读
 
 解决方法：
