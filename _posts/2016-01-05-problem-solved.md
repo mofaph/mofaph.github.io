@@ -8,8 +8,8 @@ layout: post
 解决方法：
 
 {% highlight bash %}
-\# adduser git
-\# su - git
+# adduser git
+# su - git
 git$ git init --bare blog.git
 git$ cat > blog.git/hooks/post-receive << EOF
 #!/bin/sh
@@ -22,13 +22,14 @@ PUBLIC_WWW=/var/www
 
 git clone $BLOG_BARE_REPO $BLOG_BUILD_REPO
 jekyll build -s $BLOG_BUILD_REPO -d $PUBLIC_WWW
+rm -fr $BLOG_BUILD_REPO
 
 exit
 EOF
 git$ exit
-\# mkdir /var/www
-\# chown git:nginx /var/www
-\# chmod 0755 /var/www
+# mkdir /var/www
+# chown git:nginx /var/www
+# chmod 0755 /var/www
 {% endhighlight %}
 
 设置完了 Git 之后，开始设置 Nginx：
