@@ -3,6 +3,13 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：emacs-24.5.1 使用 magit-status，查看变更时，背景高亮非常影响阅读
+
+解决方法：
+
+禁用背景高亮。在 Emacs 中，执行 `M-x customize`，在搜索框中输入`magit`，在出现的
+字段中，找到 `Magit Item Highlight`，将它的背景颜色禁用。
+
 # 问题：如何自动部署静态博客文章到 Nginx？
 
 解决方法：
