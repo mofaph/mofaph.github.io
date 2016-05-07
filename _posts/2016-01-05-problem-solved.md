@@ -3,12 +3,32 @@ title: 已解决问题集
 layout: post
 ---
 
-# 问题：在 Emacs 中打开 Windows 下的文件，出现乱码
+# 问题：在 CentOS-7 中使用 emacs-24.5.1 打开 Windows 下的文件，出现乱码
+
+详细描述：
+
+emacs-24.5.1 是使用源码编译安装的，编译的过程如下：
+
+{% highlight bash %}
+emacs-24.5$ ./configure --with-x-toolkit=no --with-xpm=no --with-png=no \
+--with-gif=no --with-tiff=no
+emacs-24.5$ make
+emacs-24.5$ sudo make install
+{% endhighlight %}
+
+文件在 Windows 下使用 emacs-24.5.1 创建和编辑，使用 Git 推送到仓库，在 CentOS-7
+中使用 Git 拉取下来。
 
 解决方法：
 
 安装对应的字体：`sudo yum groupinstall "Fonts"`，然后在打开的文件中输入`M-x
 revert-buffer-with-coding-system gbk-dos`。
+
+问题分析：
+
+在 CentOS-7 中 Emacs 默认没有使用正确的 gbk-dos 进行解码，相反地错误地使用了
+iso-latin-1-dos 进行解码，因此它会出现乱码。由于知道在 Windows 下是使用 gbk 进行
+编码的，因此使用正确的解码方法，就可以看到正常的文字了。
 
 # 问题：emacs-24.5.1 使用 magit-status，查看变更时，背景高亮非常影响阅读
 
