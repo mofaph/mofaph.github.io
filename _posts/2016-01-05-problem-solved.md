@@ -3,6 +3,26 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：`docker pull ubuntu:14.04`出现错误
+
+详细描述：
+
+OS: Ubuntu 14.04.1 LTS  
+Docker: 1.11.0, build 4dc5990  
+
+Error response from daemon: unauthorized: Authentication is required: Get https://registry-1.docker.io/v2/library/ubuntu/manifests/14.04: unauthorized: incorrect username or password
+
+解决方法：
+
+{% highlight bash %}
+$ docker logout
+$ docker login
+{% endhighlight %}
+
+问题分析：
+
+由于重置了 Docker Hub 的密码，原有的密码不能登录。
+
 # 问题：在 Emacs 中打开 Windows 下的文件，出现乱码
 
 解决方法：
