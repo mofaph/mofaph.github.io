@@ -3,6 +3,15 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：使用 CentOS-7 时，由于对 yum/rpm 使用不熟悉，影响效率
+
+解决方法：
+
+掌握常用的命令：
+
+* `rpm -qa --qf '%{NAME} %{VENDOR}'\n | grep -v CentOS` => 查询不是从 CentOS 安
+  装的包
+
 # 问题：在 CentOS-7 中使用 emacs-24.5.1 打开 Windows 下的文件，出现乱码
 
 详细描述：
