@@ -3,6 +3,20 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：安装 docker 重启后，运行`docker images`出现错误
+
+**详细描述**：
+
+Cannot connect to the Docker daemon. Is the docker daemon running on this host?
+
+**解决方法**：
+
+1. `sudo docker service start`
+
+**问题分析**：
+
+由于 docker 没有加入自动启动，需要手动启动。
+
 # 问题：使用 CentOS-7 时，由于对 yum/rpm 使用不熟悉，影响效率
 
 解决方法：
