@@ -3,6 +3,14 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：在 Windows 7 系统中，远程桌面不能成功连接
+
+**解决方法**：
+
+![远程桌面设置][remote_desktop]
+
+[remote_desktop]: /images/win7-remote-desktop.jpg
+
 # 问题：安装 docker 重启后，运行`docker images`出现错误
 
 **详细描述**：
