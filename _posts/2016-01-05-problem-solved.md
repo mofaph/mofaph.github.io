@@ -3,6 +3,24 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：[Errno -1] Package does not match intended download.
+
+**详细描述**;5u
+
+使用 `sudo yum install mutt` 时，出现如上的错误
+
+**问题分析**：
+
+[参考这个链接][yum_errno_1]
+
+因为镜像站点和主站点没有同步，所以需要等待一段时间以便数据同步（通常是几个小时）。
+
+[yum_errno_1]: https://www.centos.org/forums/viewtopic.php?f=19&t=15714&start=10
+
+**解决方法**:
+
+等待镜像站点更新，或者下载包括依赖在内的 rpm 包进行安装。
+
 # 问题：在 Windows 7 系统中，远程桌面不能成功连接
 
 **解决方法**：
