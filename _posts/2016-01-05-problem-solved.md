@@ -5,7 +5,7 @@ layout: post
 
 # 问题：[Errno -1] Package does not match intended download.
 
-**详细描述**;5u
+**详细描述**：
 
 使用 `sudo yum install mutt` 时，出现如上的错误
 
