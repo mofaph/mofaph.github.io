@@ -3,6 +3,20 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：进程发生 coredump，但没有生成 core 文件
+
+**详细描述**：
+
+在 CentOS-6.5 中，系统默认是关闭 coredump 核心存储的，也就不会产生 core 文件。进
+程发生 coredump 后，没哟生成 core 文件。
+
+**解决方法**：
+
+{% highlight bash %}
+$ sudo echo 'kernel.core_pattern = %e-%u-%s-%t.core' >> /etc/sysctl.conf
+$ sudo sysctl -p
+{% endhighlight %}
+
 # 问题：[Errno -1] Package does not match intended download.
 
 **详细描述**：
