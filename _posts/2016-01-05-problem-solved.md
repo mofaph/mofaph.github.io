@@ -3,6 +3,19 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：如何打包一个系统压缩包，以便可以方便地制作 docker 镜像？
+
+**解决方法**：
+
+%{highlight bash}
+$ cd /
+$ sudo tar czpf backup.tar.gz --exclude=/backup.tar.gz --one-file-system /
+%{endhighlight}
+
+[点击这里查看详细的信息][tar_backup]
+
+[tar_backup]: https://help.ubuntu.com/community/BackupYourSystem/TAR
+
 # 问题：在 docker 容器内不能访问本地文件系统
 
 **详细描述**:
