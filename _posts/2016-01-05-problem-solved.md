@@ -3,6 +3,28 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：在 docker 容器内不能访问本地文件系统
+
+**详细描述**:
+
+环境：
+
+CentOS-7.0
+Docker-1.10.3
+
+使用 `docker run -v /path/to/local:/path/to/docker images /bin/bash`启动容器，在
+容器内部不能访问本地文件系统中的目录，出现的错误信息是：
+
+`ls: cannot open directory /mnt: Permission denied`
+
+**解决方法**：
+
+chcon -Rt svirt_sandbox_file_t /path/to/local
+
+**问题分析**：
+
+这个问题是由 selinux 导致的。需要往 selinux 加一个规则使之可以访问。
+
 # 问题：进程发生 coredump，但没有生成 core 文件
 
 **详细描述**：
