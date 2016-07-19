@@ -7,10 +7,10 @@ layout: post
 
 **解决方法**：
 
-%{highlight bash}
+{% highlight bash %}
 $ cd /
 $ sudo tar czpf backup.tar.gz --exclude=/backup.tar.gz --one-file-system /
-%{endhighlight}
+{% endhighlight %}
 
 [点击这里查看详细的信息][tar_backup]
 
@@ -20,10 +20,7 @@ $ sudo tar czpf backup.tar.gz --exclude=/backup.tar.gz --one-file-system /
 
 **详细描述**:
 
-环境：
-
-CentOS-7.0
-Docker-1.10.3
+环境： CentOS-7.0, Docker-1.10.3
 
 使用 `docker run -v /path/to/local:/path/to/docker images /bin/bash`启动容器，在
 容器内部不能访问本地文件系统中的目录，出现的错误信息是：
@@ -32,7 +29,7 @@ Docker-1.10.3
 
 **解决方法**：
 
-chcon -Rt svirt_sandbox_file_t /path/to/local
+`chcon -Rt svirt_sandbox_file_t /path/to/local`
 
 **问题分析**：
 
