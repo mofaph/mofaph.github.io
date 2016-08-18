@@ -47,6 +47,7 @@ $ sudo tar czpf backup.tar.gz --exclude=/backup.tar.gz --one-file-system /
 {% highlight bash %}
 $ sudo echo 'kernel.core_pattern = %e-%u-%s-%t.core' >> /etc/sysctl.conf
 $ sudo sysctl -p
+$ echo "ulimit -c unlimited >/dev/null 2>&1"
 {% endhighlight %}
 
 # 问题：[Errno -1] Package does not match intended download.
