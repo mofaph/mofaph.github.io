@@ -40,7 +40,7 @@ $ sudo tar czpf backup.tar.gz --exclude=/backup.tar.gz --one-file-system /
 **详细描述**：
 
 在 CentOS-6.5 中，系统默认是关闭 coredump 核心存储的，也就不会产生 core 文件。进
-程发生 coredump 后，没哟生成 core 文件。
+程发生 coredump 后，没有生成 core 文件。
 
 **解决方法**：
 
