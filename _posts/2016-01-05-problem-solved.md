@@ -3,6 +3,28 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：VMWare Workstation 克隆虚拟机后，没有 IP 地址
+
+**详细描述**：
+
+VMWare Workstation: 8.0.0 build-471780
+Host OS: Windows 7 Ultimate, 64-bit 6.1.7601, Service Pack 1
+Guest OS: CentOS-6.5
+
+**解决方法**：
+
+{% highlight bash %}
+DEVICE="eth0"
+BOOTPROTO=none
+ONBOOT=yes
+MTU="1500"
+NETMASK=255.255.255.0
+IPADDR=192.168.37.201
+HWADDR="00:0C:29:5F:20:D5" # 这里填写的是 MAC 地址
+TYPE="Ethernet"
+GATEWAY=192.168.37.2
+{% endhighlight %}
+
 # 问题：如何打包一个系统压缩包，以便可以方便地制作 docker 镜像？
 
 **解决方法**：
