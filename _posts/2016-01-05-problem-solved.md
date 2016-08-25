@@ -19,9 +19,9 @@ root# iptables -F # 关闭掉所有的规则
 
 **详细描述**：
 
-VMWare Workstation: 8.0.0 build-471780
-Host OS: Windows 7 Ultimate, 64-bit 6.1.7601, Service Pack 1
-Guest OS: CentOS-6.5
+* VMWare Workstation: 8.0.0 build-471780  
+* Host OS: Windows 7 Ultimate, 64-bit 6.1.7601, Service Pack 1  
+* Guest OS: CentOS-6.5  
 
 **解决方法**：
 
