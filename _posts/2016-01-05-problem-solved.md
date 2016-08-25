@@ -3,6 +3,18 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：如何模拟网络断开的情况？
+
+**解决方法**：
+
+使用 iptables 屏蔽某个节点的网络包，掌握常用的命令：
+
+{% highlight bash %}
+root# iptables -L # 列出 iptables 的过滤规则
+root# iptables -A INPUT -s <ipaddr> -j DROP # 将来自 <ipaddr> 的网络包都丢弃
+root# iptables -F # 关闭掉所有的规则
+{% endhighlight %}
+
 # 问题：VMWare Workstation 克隆虚拟机后，没有 IP 地址
 
 **详细描述**：
