@@ -3,6 +3,45 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：CentOS-7 系统上，使用`systemctl start nginx`启动失败
+
+**详细描述**：
+
+{% highlight bash %}
+[root@CentOS7 nginx]# systemctl status -l nginx
+● nginx.service - The nginx HTTP and reverse proxy server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor
+   preset: disabled)
+      Active: failed (Result: exit-code) since Mon 2016-08-29 09:23:00 CST; 43s ago
+        Process: 9833 ExecStartPre=/usr/sbin/nginx -t (code=exited,
+        status=1/FAILURE)
+          Process: 9831 ExecStartPre=/usr/bin/rm -f /run/nginx.pid (code=exited, status=0/SUCCESS)
+          Aug 29 09:23:00 CentOS7 systemd[1]: Starting The nginx HTTP and reverse proxy server...
+          Aug 29 09:23:00 CentOS7 nginx[9833]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+          Aug 29 09:23:00 CentOS7 nginx[9833]: nginx: [emerg] bind() to 0.0.0.0:20000 failed (13: Permission denied)
+          Aug 29 09:23:00 CentOS7 nginx[9833]: nginx: configuration file /etc/nginx/nginx.conf test failed
+          Aug 29 09:23:00 CentOS7 systemd[1]: nginx.service: control process exited, code=exited status=1
+          Aug 29 09:23:00 CentOS7 systemd[1]: Failed to start The nginx HTTP and reverse proxy server.
+          Aug 29 09:23:00 CentOS7 systemd[1]: Unit nginx.service entered failed state.
+          Aug 29 09:23:00 CentOS7 systemd[1]: nginx.service failed.
+{% endhighlight %}
+
+**问题分析**：
+
+nginx 服务启动失败，是因为绑定到端口 20000 失败了。之所以会失败，是因为启用了
+selinux，它会要求绑定到 1~50000 的端口都需要 root 权限。
+
+**解决方法**：
+
+禁用 selinux：
+
+{% highlight bash %}
+$ sestatus
+root# sed -i 's/SELINUX=.*$/SELINUX=disabled/' /etc/selinux/config
+root# reboot
+$ sestatus
+{% endhighlight %}
+
 # 问题：如何模拟网络断开的情况？
 
 **解决方法**：
