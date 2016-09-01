@@ -3,6 +3,12 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：tmux 多终端输入相同的命令非常繁琐
+
+**解决方法**：
+
+tmux 提供了在多个 pane 输入命令的功能，使用下面的命令开启：`setw synchronize-panes`
+
 # 问题：CentOS-7 系统上，使用`systemctl start nginx`启动失败
 
 **详细描述**：
