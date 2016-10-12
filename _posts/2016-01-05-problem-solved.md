@@ -3,6 +3,20 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：如何在 CentOS-7 安装支持 tcp/udp 负载均衡的 nginx？
+
+在 /etc/yum.repo.d/ 目录下新建一个 nginx.repo 的文件，这个文件的内容如下：
+
+```Nginx
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/
+gpgcheck=0
+enabled=1
+```
+
+然后用 root 用户运行 `yum update nginx`
+
 # 问题：tmux 多终端输入相同的命令非常繁琐
 
 **解决方法**：
