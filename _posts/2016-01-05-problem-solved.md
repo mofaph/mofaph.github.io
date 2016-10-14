@@ -3,6 +3,38 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：vagrant 从 centos/7 的基础上制作 base box，vagrant up 不能完成
+
+**详细描述**：
+
+{%highlight Bash%}
+vagrant package --base devel --output centos-7-devel.box
+vagrant box add centos-7-devel centos-7-devel.box
+mkdir test
+cd test
+vagrant init centos-7-devel
+vagrant up
+{%endhighlight%}
+
+运行以上的命令之后，`vagrant up`不能完成，一直出现以下的信息：
+
+"Warning: Authentication failure. Retrying... "
+
+**解决方法**：
+
+{%highlight Bash%}
+curl https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub >> /home/vagrant/.ssh/authorized_keys
+mkdir -m 0700 -p /home/vagrant/.ssh
+chmod 600 /home/vagrant/.ssh/authorized_keys
+chown -R vagrant:vagrant /home/vagrant/.ssh
+{%endhighlight%}
+
+参考链接：
+
+* [setup-centos-7-base-box][]
+
+[setup-centos-7-base-box]: http://linoxide.com/linux-how-to/setup-centos-7-vagrant-base-box-virtualbox/
+
 # 问题：vagrant 如何使用 scp 将文件从宿主机器传输到虚拟机器？
 
 **解决方法**：
