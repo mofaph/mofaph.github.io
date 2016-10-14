@@ -3,6 +3,35 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：vagrant 如何从 centos/7 base box 制作定制的 box？
+
+**解决方法**：
+
+{%highlight Bash%}
+mkdir test
+cd test
+vagrant init centos/7
+vagrant up
+vagrant ssh # 这里会进入虚拟机
+
+...install your own package...
+cd
+sudo yum clean all
+sudo rm -fr /tmp/* /var/log/wtmp /var/log/wtmp ~/.viminfo
+history -c
+truncate -s 0 ~/.bash_history
+shutdown -h 0 # 这里会退出虚拟机，在宿主机器上执行下面的命令
+
+vagrant package --base devel --output centos-7-devel.box
+vagrant box add centos-7-devel centos-7-devel.box
+
+mkdir ../test2
+cd ../test2
+vagrant init centos-7-devel
+vagrant up
+vagrant ssh # 进入定制的虚拟机中
+{%endhighlight%}
+
 # 问题：vagrant 从 centos/7 的基础上制作 base box，vagrant up 不能完成
 
 **详细描述**：
