@@ -3,6 +3,15 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：vagrant 如何使用 scp 将文件从宿主机器传输到虚拟机器？
+
+**解决方法**：
+
+```Bash
+vagrant ssh-config > vagrant-ssh-config
+scp -F vagrant-ssh-config -r Tools default:~/
+```
+
 # 问题：如何在 CentOS-7 安装支持 tcp/udp 负载均衡的 nginx？
 
 在 /etc/yum.repo.d/ 目录下新建一个 nginx.repo 的文件，这个文件的内容如下：
