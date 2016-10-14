@@ -3,6 +3,23 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：vagrant 管理的 centos/7 的虚拟机相互间 ssh 不能登录
+
+**详细描述**：
+
+运行`ssh vagrant@192.168.33.41`，出现如下的错误信息：
+
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+
+**解决方法**：
+
+{%highlight Bash%}
+node0$ ssh-keygen
+node0$ cat .ssh/id_rsa.pub # 这里拷贝输出的内容
+node1$ echo "这里是刚才拷贝的内容" >> .ssh/authorized_keys
+node0$ ssh vagrant@192.168.33.41 # 现在应该可以登录了
+{%endhighlight%}
+
 # 问题：vagrant 如何从 centos/7 base box 制作定制的 box？
 
 **解决方法**：
