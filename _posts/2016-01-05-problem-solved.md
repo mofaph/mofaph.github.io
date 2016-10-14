@@ -198,8 +198,15 @@ Cannot connect to the Docker daemon. Is the docker daemon running on this host?
 
 掌握常用的命令：
 
-* `rpm -qa --qf '%{NAME} %{VENDOR}'\n | grep -v CentOS` => 查询不是从 CentOS 安
-  装的包
+* 查看工具是由哪个包提供的：`yum whatprovides */netstat`
+* 查看包的信息：`yum info emacs`
+* 查看所有的仓库列表：`yum repolist`
+* 搜索软件包：`yum search emacs`
+* 清理缓存：`yum clean all`
+* 查询软件包是否已经安装：`yum info emacs`或者`rpm -qa | grep emacs`
+* 列出已安装软件包的文件：`rpm -ql emacs`
+* 列出 rpm 包的文件：`rpm -qf emacs.rpm`
+* 查询不是从源安装的包：`rpm -qa --qf '%{NAME} %{VENDOR}'\n | grep -v CentOS`
 
 # 问题：在 CentOS-7 中使用 emacs-24.5.1 打开 Windows 下的文件，出现乱码
 
