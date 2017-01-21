@@ -15,6 +15,63 @@ layout: post
     # send the prefix to client inside window
     bind-key -n C-a send-prefix
 
+# 问题：Emacs 下如何配置 rtags + irony + company？
+
+## llvm-config
+
+{% highlight Bash %}
+yum install -y clang-devel llvm-devel
+{% endhighlight %}
+
+## rtags
+
+{% highlight Bash %}
+git clone --recursive https://github.com/Andersbakken/rtags.git
+cd rtags && git checkout -b v2.8
+mkdir build && cd build && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..
+make -j4
+sudo make install
+{% endhighlight %}
+
+## bear
+
+{% highlight Bash %}
+wget -c https://github.com/rizsotto/Bear/archive/2.2.1.tar.gz -O Bear-2.2.1.tar.gz
+tar xf Bear-2.2.1.tar.gz
+cd Bear-2.2.1
+mkdkir build && cd build
+cmake ..
+make -j4 all
+make check   # to run tests
+sudo make install # to install
+{% endhighlight %}
+
+## emacs-25.1
+
+{% highlight Bash %}
+wget -c http://ftp.gnu.org/gnu/emacs/emacs-25.1.tar.xz
+tar xf emacs-25.1.tar.xz
+cd emacs-25.1
+./configure --with-x-toolkit=no --with-xpm=no --with-png=no --with-gif=no --with-tiff=no
+make -j4
+sudo make install
+{% endhighlight %}
+
+## irony
+
+{% highlight elisp %}
+M-x irony-install-server
+{% endhighlight %}
+
+## cmake-ide
+
+在每个项目下需要设置一个 .dir-locals.el
+
+{% highlight elisp %}
+((nil . ((cmake-ide--locate-project-dir . "/abs/path/to/project/")
+         (cmake-ide-build-dir . "/abs/path/to/project/build/"))))
+{% endhighlight %}
+
 # 问题：CentOS-7 如何将系统时间设置为硬件时间？
 
 `sudo hwclock --hctosys`
