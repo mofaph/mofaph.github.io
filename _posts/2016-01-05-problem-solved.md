@@ -132,12 +132,16 @@ vagrant ssh # 这里会进入虚拟机
 
 ...install your own package...
 cd
-sudo yum clean all
-sudo rm -fr /tmp/* /var/log/wtmp /var/log/wtmp ~/.viminfo
-history -c
-truncate -s 0 ~/.bash_history
-shutdown -h 0 # 这里会退出虚拟机，在宿主机器上执行下面的命令
+curl https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub >> ~/.ssh/authorized_keys
 
+sudo dd if=/dev/zero of=/zero bs=4K # 这样可以减少镜像占用的空间
+sudo rm -f /zero
+sudo yum clean all
+sudo rm -fr /tmp/* /var/log/* ~/.viminfo ~/.pki
+history -c && truncate -s 0 ~/.bash_history && history -c
+C-d # 这里会退出虚拟机，在宿主机器上执行下面的命令
+
+打开 VirtualBox，修改虚拟机的名字，下面打包要填写这个名字
 vagrant package --base devel --output centos-7-devel.box
 vagrant box add centos-7-devel centos-7-devel.box
 
