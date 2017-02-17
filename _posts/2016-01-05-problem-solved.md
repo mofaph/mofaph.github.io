@@ -3,6 +3,18 @@ title: 已解决问题集
 layout: post
 ---
 
+# 问题：如何 detach 嵌套的 tmux 会话？
+
+退出 tmux 嵌套步骤：本地机器打开一个 tmux:local，ssh 登录到远程机器，再次打开一
+个 tmux:remote；如果需要退出 tmux:remote，那么需要本地的 tmux 不要捕获 C-b 前缀，
+使用以前的命令：
+
+    # set prefix key to Ctrl-t
+    unbind C-b
+    set -g prefix C-t
+    # send the prefix to client inside window
+    bind-key -n C-a send-prefix
+
 # 问题：CentOS-7 如何将系统时间设置为硬件时间？
 
 `sudo hwclock --hctosys`
