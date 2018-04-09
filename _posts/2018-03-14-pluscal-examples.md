@@ -24,7 +24,8 @@ title: 'TLA+: 三个例子'
 # 并发
 
 在 1965 年，Edsger Dijkstra 发表了一篇经典文章：“Solution of a Problem in
-Concurrent Control”。在文章中，他提出并解决了一个问题，简略地描述如下：
+Concurrent Programming Control”。在文章中，他提出并解决了一个问题，简略地描述如
+下：
 
     有 N 台计算机，它们只能通过读写一个共享存储来进行通信，读和写操作是不可分割
     的。每台计算机中有一个进程不停地进行运转，进程中有一个临界区。现在要求为这些
